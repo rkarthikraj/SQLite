@@ -49,7 +49,7 @@ public class MyDBHandler  extends SQLiteOpenHelper {
     public String databaseToString(){
         String dbString="";
         SQLiteDatabase db=getWritableDatabase();
-        /*String query3="SELECT * FROM " + TABLE_PRODUCTS;
+        String query3="SELECT * FROM " + TABLE_PRODUCTS;
         Cursor c=db.rawQuery(query3,null);
         if(c.moveToFirst()) {
             while (!c.isAfterLast()) {
@@ -58,7 +58,7 @@ public class MyDBHandler  extends SQLiteOpenHelper {
                     dbString += "\n";
                 }
             }
-        }*/
+        }
         db.close();
         return dbString;
     }
