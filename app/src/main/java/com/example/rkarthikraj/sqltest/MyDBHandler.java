@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by R KARTHIK RAJ on 20-12-2016.
@@ -47,19 +48,19 @@ public class MyDBHandler  extends SQLiteOpenHelper {
     }
 
     public String databaseToString(){
+        Log.d("print", "databse");
         String dbString="";
         SQLiteDatabase db=getWritableDatabase();
         String query3="SELECT * FROM " + TABLE_PRODUCTS;
+        Log.d("print", "query");
         Cursor c=db.rawQuery(query3,null);
         if(c.moveToFirst()) {
-            while (!c.isAfterLast()) {
-                if (c.getString(c.getColumnIndex("productname")) != null) {
-                    dbString += c.getString(c.getColumnIndex("productname"));
-                    dbString += "\n";
-                }
-            }
+            do {
+                Products prod  = new Products(c.getString(1));
+                Log.d("print", prod.get_productname() + "its ");
+            } while (c.moveToNext());
         }
-        db.close();
-        return dbString;
+        //db.close();
+        return "";
     }
 }
